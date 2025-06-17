@@ -1,10 +1,5 @@
 # GithubforDevelopers
-## FAQ
+## Hello
 
-#### Question 1
+#### welcome to GithunforDeveloper
 
-Answer 1
-
-#### Question 2
-
-Answer 2
