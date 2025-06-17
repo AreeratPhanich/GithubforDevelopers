@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ให้คนตัวจุด - หน้าแรก</title>
+<style>
+  body {
+    margin: 0; padding: 40px 20px;
+    font-family: 'Sarabun', sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1 { font-size: 2.5rem; margin-bottom: 20px; }
+  .answers button {
+    margin: 0 10px;
+    padding: 15px 40px;
+    font-size: 1.3rem;
+    cursor: pointer;
+    border-radius: 8px;
+  }
+  #gift-box {
+    display: none;
+    font-size: 80px;
+    margin: 20px 0;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease;
+  }
+  #gift-box:hover { transform: scale(1.1); }
+  .heart {
+    position: fixed;
+    bottom: 30px;
+    font-size: 2rem;
+    color: #ff0040;
+    animation: floatUp 3s ease forwards;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1000;
+  }
+  @keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-200px) scale(1.5); }
+  }
+
+  /* สไตล์รูปภาพ */
+  #photo {
+    max-width: 90vw;
+    max-height: 300px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+  <!-- แสดงรูปภาพที่นี่ -->
+  <img id="photo" src="pig.jpg" alt="รูปของเรา" />
+
+  <h1>รักฉันมั้ย?</h1>
+  <div class="answers">
+    <button onclick="showGift()">รัก</button>
+    <button onclick="showGift()">รักเหมือนกัน</button>
+  </div>
+
+  <div id="gift-box" title="คลิกเพื่อเปิดกล่องของขวัญ">🎁</div>
+
+  <script>
+    function showGift() {
+      document.getElementById('gift-box').style.display = 'block';
+    }
+
+    document.getElementById('gift-box').addEventListener('click', () => {
+      for(let i=0; i<50; i++) createHeart();
+    });
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '❤️';
+      heart.style.left = Math.random() * (window.innerWidth - 30) + 'px';
+      heart.style.animationDelay = (Math.random() * 2) + 's';
+      document.body.appendChild(heart);
+      heart.addEventListener('animationend', () => heart.remove());
+    }
+  </script>
+</body>
+</html>
